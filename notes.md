@@ -28,4 +28,9 @@ deployment checklist:
   - the video added node and npm versions under an "engines" key, but it feels a bit odd to manually edit this file
 
 * specify startup script
-  - "start": "node index.js",
+
+  - "start": "node index.js", in package.json
+
+* scripts
+  - config script in package.json, e.g. add 'dev' script for starting in dev mode
+  - run with `npm run dev`
