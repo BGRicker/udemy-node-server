@@ -53,6 +53,17 @@ deployment checklist:
 
 * MongoDB is schemaless
 * Mongoose model class represents entire MongoDB collection
+
   - model class has functions to work with an entire collection
   - creating a new record/searching all collections done with model class
   - also model instances are JS objects that represent a single record in collection
+
+* shorthand dependent const assignment:
+
+- const mongoose = require('mongoose');
+- const Schema = mongoose.Schema; // set new variable called Schema, assign mongoose.Schema to it
+- const { Schema } = mongoose; // mongoose object has Schema property, assign it to { Schema }
+  - "destructuring"
+
+* Schema will describe what each individual record will look like
+  mongoose.model('users', userSchema); // telling mongoose to create a new collection called users
