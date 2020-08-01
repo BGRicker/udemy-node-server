@@ -45,5 +45,14 @@ deployment checklist:
 - shorthand for assigning, requiring, and using a require like routes:
   - require('./routes/authRoutes')(app);
 - longhand version:
+
   - const authRoutes = require('./routes/authRoutes');
   - authRoutes(app);
+
+- requiring authRoutes returns a function, then this immediately invokes the function with an app argument
+
+* MongoDB is schemaless
+* Mongoose model class represents entire MongoDB collection
+  - model class has functions to work with an entire collection
+  - creating a new record/searching all collections done with model class
+  - also model instances are JS objects that represent a single record in collection
