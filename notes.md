@@ -34,3 +34,16 @@ deployment checklist:
 * scripts
   - config script in package.json, e.g. add 'dev' script for starting in dev mode
   - run with `npm run dev`
+
+- organizing, new folders:
+
+  - /config - protected AAPI keys and settings
+  - /routes - route handlers, grouped by purpose
+  - /services - Helper modules and business logic (e.g. passport)
+  - index.js
+
+- shorthand for assigning, requiring, and using a require like routes:
+  - require('./routes/authRoutes')(app);
+- longhand version:
+  - const authRoutes = require('./routes/authRoutes');
+  - authRoutes(app);
