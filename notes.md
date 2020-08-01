@@ -67,3 +67,13 @@ deployment checklist:
 
 * Schema will describe what each individual record will look like
   mongoose.model('users', userSchema); // telling mongoose to create a new collection called users
+
+* different method of requiring user class
+
+  - tests will require model files into project multiple times, mongoose will think you're trying to load multiple models called `Users` so it'll throw an error
+
+  * require mongoose library, then mongoose.model('users');
+
+* mongoose: two arguments means you're pulling something out of it, one means you're pulling something out of it
+  - user model: mongoose.model('users', userSchema);
+  - passport: const User = mongoose.model('users');
