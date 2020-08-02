@@ -75,5 +75,26 @@ deployment checklist:
   * require mongoose library, then mongoose.model('users');
 
 * mongoose: two arguments means you're pulling something out of it, one means you're pulling something out of it
+
   - user model: mongoose.model('users', userSchema);
   - passport: const User = mongoose.model('users');
+
+* promise - Node handles async code
+
+```
+    (accessToken, refreshToken, profile, done) => {
+      User.findOne({ googleId: profile.id }).then((existingUser) => {
+        // async call to mongodb to write the user, existingUser being the user we look to find
+        if (existingUser) {
+          // if there's an existing user, we're done. Passing null to show no error, then returning the existing user
+          done(null, existingUser);
+        } else {
+          new User({ googleId: profile.id })
+          // if there's no user, save them
+            .save()
+            // wait until user saved to database to invoke done like above
+            .then((user) => done(null, user));
+            // (user) here represents the user we saved, use this as it could have changes made during saving from DB
+        }
+      });
+```
