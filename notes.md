@@ -98,3 +98,46 @@ deployment checklist:
         }
       });
 ```
+
+- proxy in react app: if anyone looks to access /auth/google on the react server, automatically forward tihs over to the node server
+
+client injex.js: data layer control (Redux)
+client App.js: rendering layer control (React Router)
+
+if a file is exporting a class or component, it starts with a capital leter: App.js
+returning a function or a series of functions will be lowercase: functions.js
+
+ReactDOM.render(<App />, document.querySelector("#root"));
+// first argument: root component
+// second arg: where we're rendering the component to inside of the DOM
+
+Redux: hold state/data in application
+Reducers: pieces of state
+
+- authReducer: records whether or not the user is logged in
+- surveysReducer: Records a list of all surveys user has created
+
+Redux store at top where all state kept, to change state we call action creator which is sent to all reducers in application. combineReducers used to update state in redux store
+
+- React Component calls an Action Creator
+- returns an action
+- sent to each of the reducers
+- combining reducers updates state in redux store
+- state sent back to react components, causing them to rerender
+
+in index.js file, we create our redux store and render "provider" tag
+
+- react-redux gives us provider tag, bonding layer/glue between redux and react sides of application
+- provider tag gets sent the redux store. Since it's at the parent component of application, any other component can reach directly into the store to pull state
+
+//index.js
+const store = createStore(() => [], applyMiddleware());
+// first argument: all reducers
+// second argument: starting/initial state of application, relevent for serverside rendering
+
+ReactDOM.render(
+<Provider store={store}>
+<App />
+</Provider>,
+document.querySelector("#root")
+);
