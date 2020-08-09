@@ -81,7 +81,7 @@ deployment checklist:
 
 * promise - Node handles async code
 
-```
+````javacscript
     (accessToken, refreshToken, profile, done) => {
       User.findOne({ googleId: profile.id }).then((existingUser) => {
         // async call to mongodb to write the user, existingUser being the user we look to find
@@ -97,7 +97,6 @@ deployment checklist:
             // (user) here represents the user we saved, use this as it could have changes made during saving from DB
         }
       });
-```
 
 - proxy in react app: if anyone looks to access /auth/google on the react server, automatically forward tihs over to the node server
 
@@ -107,7 +106,10 @@ client App.js: rendering layer control (React Router)
 if a file is exporting a class or component, it starts with a capital leter: App.js
 returning a function or a series of functions will be lowercase: functions.js
 
-ReactDOM.render(<App />, document.querySelector("#root"));
+```javascript
+ReactDOM.render(<App />, document.querySelector('#root'));
+````
+
 // first argument: root component
 // second arg: where we're rendering the component to inside of the DOM
 
@@ -131,35 +133,46 @@ in index.js file, we create our redux store and render "provider" tag
 - provider tag gets sent the redux store. Since it's at the parent component of application, any other component can reach directly into the store to pull state
 
 //index.js
+
+```javascript
 const store = createStore(() => [], applyMiddleware());
+```
+
 // first argument: all reducers
 // second argument: starting/initial state of application, relevent for serverside rendering
 
+```javascript
 ReactDOM.render(
-<Provider store={store}>
-<App />
-</Provider>,
-document.querySelector("#root")
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.querySelector('#root')
 );
+```
 
 // browser router tells router how to behave, looks at URL and changes components on screen
 // route is a react component used to set up rule between route user visits and set of components visible on screen
 // Browser Router expects ones child, e.g. a div containing other children
 
+```javascript
 const Landing = () => <h2>Landing</h2>;
 
 const App = () => {
-return (
-
-<div>
-<BrowserRouter>
-<div>
-<Route path="/" component={Landing}></Route>
-</div>
-</BrowserRouter>
-</div>
-);
+  return (
+    <div>
+      <BrowserRouter>
+        <div>
+          <Route path="/" component={Landing}></Route>
+        </div>
+      </BrowserRouter>
+    </div>
+  );
 };
+```
 
 router takes current URL and tries to match every single route/path to current route
 path="/" route will also be matched on "/surveys/new", need exact={true}
+
+router treated like special objects where they're shown if conditions are met
+
+- class based components place helper or functions determining what to render
