@@ -141,3 +141,25 @@ ReactDOM.render(
 </Provider>,
 document.querySelector("#root")
 );
+
+// browser router tells router how to behave, looks at URL and changes components on screen
+// route is a react component used to set up rule between route user visits and set of components visible on screen
+// Browser Router expects ones child, e.g. a div containing other children
+
+const Landing = () => <h2>Landing</h2>;
+
+const App = () => {
+return (
+
+<div>
+<BrowserRouter>
+<div>
+<Route path="/" component={Landing}></Route>
+</div>
+</BrowserRouter>
+</div>
+);
+};
+
+router takes current URL and tries to match every single route/path to current route
+path="/" route will also be matched on "/surveys/new", need exact={true}
